@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LandingPage extends AbstractComponent {
 
     WebDriver driver;
-
+    public HrmHomePage hrmHomePage;
     public LandingPage(WebDriver driver)
     {
         /* sending driver instacnes to superclass AbstractComponents */
@@ -38,15 +38,17 @@ public class LandingPage extends AbstractComponent {
     public void goTo()
     {
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        System.out.println("in Goto");
     }
 
-    public void loginApp(String email , String PassE)
+    public HrmHomePage loginApp(String email , String PassE)
     {
         waitForElementAppr(usernameW);
         System.out.println("Logging in...");
         username.sendKeys(email);
         password.sendKeys(PassE);
         submit.click();
+        return hrmHomePage;
     }
 
 }

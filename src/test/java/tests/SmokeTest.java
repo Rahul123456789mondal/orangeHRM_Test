@@ -1,5 +1,6 @@
 package tests;
 
+import Pageobjects.HrmHomePage;
 import Pageobjects.LandingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,8 @@ public class SmokeTest extends BaseTest {
     public void Smoke() throws InterruptedException, IOException {
 
         LandingPage landingpage  = launchApplication();
+        HrmHomePage hrmhome = landingpage.loginApp("admin","admin123");
+
     }
 
 }

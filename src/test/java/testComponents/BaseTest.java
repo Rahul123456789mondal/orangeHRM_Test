@@ -37,16 +37,16 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
-            System.out.println("Launching browser...1");
+            System.out.println("Launching browser chrome...1");
             driver = new ChromeDriver(options);
         }
         else if (browserName.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
-            System.out.println("Launching browser..2.");
+            System.out.println("Launching browser firefox..2.");
             driver = new FirefoxDriver();
         }
         else if (browserName.equalsIgnoreCase("edge")) {
-            System.out.println("Launching browser...3");
+            System.out.println("Launching browser edge...3");
             driver = new EdgeDriver();
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -63,11 +63,12 @@ public class BaseTest {
         return landingpage;
     }
 
-    @AfterMethod
+  /*  @AfterMethod(alwaysRun = true)
     public void tearDown()
     {
+        System.out.println("Tearing down the code");
         driver.close();
-    }
+    }*/
 
 
 }
