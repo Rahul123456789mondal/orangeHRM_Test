@@ -1,5 +1,6 @@
 package org.example;
 
+import Pageobjects.LandingPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,13 +22,14 @@ public class land2 {
         ChromeOptions options = new ChromeOptions();
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.get(BaseUrl);
-
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("admin");
-        driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin123");
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
+       // driver.get(BaseUrl);
+        LandingPage landingpage = new LandingPage(driver);
+        landingpage.goTo();
+//        Thread.sleep(3000);
+        landingpage.loginApp("admin","admin123");
+//        driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("admin");
+//        driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin123");
+//        driver.findElement(By.xpath("//button[@type='submit']")).click();
     }
     @Test
     public void GotoE()
