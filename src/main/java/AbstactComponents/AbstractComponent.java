@@ -22,7 +22,7 @@ public class AbstractComponent {
     // Explicit wait class Taking Params only findBy Webelement
     public void waitForElementAppr(By findBy)
     {
-        // wating for the element to be located
+        // waiting for the element to be located
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
     }

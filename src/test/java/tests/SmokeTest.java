@@ -13,11 +13,12 @@ import testComponents.BaseTest;
 import java.io.IOException;
 
 public class SmokeTest extends BaseTest {
-    @Test
-    public void Smoke() throws InterruptedException, IOException {
 
-        LandingPage landingpage  = launchApplication();
-        HrmHomePage hrmhome = landingpage.loginApp("admin","admin123");
+    @Test
+    public void Smoke(){
+
+        LandingPage landingPage = new LandingPage(driver);
+        landingPage.loginApp("Admin", "admin123");
 
     }
 

@@ -13,7 +13,7 @@ public class LandingPage extends AbstractComponent {
     public HrmHomePage hrmHomePage;
     public LandingPage(WebDriver driver)
     {
-        /* sending driver instacnes to superclass AbstractComponents */
+        /* sending driver instances to superclass AbstractComponents */
         super(driver);
         //for local class variable driver life which is coming from - constructor initilization
         this.driver = driver;
@@ -24,7 +24,6 @@ public class LandingPage extends AbstractComponent {
     //PageFactory ;driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("admin");
     @FindBy(xpath ="//input[@placeholder='Username']")
     WebElement username;
-
     By usernameW = By.xpath("//input[@placeholder='Username']");
 
      //PageFactory : driver.findElement(By.xpath("//input[@placeholder='Password']"))
@@ -35,20 +34,20 @@ public class LandingPage extends AbstractComponent {
     @FindBy(xpath ="//button[@type='submit']")
     WebElement submit;
 
-    public void goTo()
-    {
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        System.out.println("in Goto");
-    }
 
-    public HrmHomePage loginApp(String email , String PassE)
+    public void loginApp(String Username , String PassE)
     {
         waitForElementAppr(usernameW);
         System.out.println("Logging in...");
-        username.sendKeys(email);
+        username.sendKeys(Username);
         password.sendKeys(PassE);
         submit.click();
-        return hrmHomePage;
     }
 
 }
+
+/*public void goTo()
+    {
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        System.out.println("in Goto");
+    }*/

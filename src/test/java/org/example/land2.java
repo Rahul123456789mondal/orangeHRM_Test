@@ -16,17 +16,20 @@ public class land2 {
 
     public String BaseUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
 
-    @Test
+
+}
+
+/*    @Test
     public void setup() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
        // driver.get(BaseUrl);
-        LandingPage landingpage = new LandingPage(driver);
-        landingpage.goTo();
+        //LandingPage landingpage = new LandingPage(driver);
+        //landingpage.goTo();
 //        Thread.sleep(3000);
-        landingpage.loginApp("admin","admin123");
+        //landingpage.loginApp("admin","admin123");
 //        driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("admin");
 //        driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin123");
 //        driver.findElement(By.xpath("//button[@type='submit']")).click();
@@ -37,5 +40,4 @@ public class land2 {
         WebDriverManager.edgedriver().setup();
         WebDriver edgeDriver = new EdgeDriver();
         edgeDriver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-    }
-}
+    }*/

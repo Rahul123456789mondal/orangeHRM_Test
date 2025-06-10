@@ -1,6 +1,7 @@
 package testComponents;
 
 import Pageobjects.LandingPage;
+import Utility.config;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,24 +11,83 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Objects;
 import java.util.Properties;
 
 public class BaseTest {
 
     public WebDriver driver;
-    public LandingPage landingpage;
+
+    public WebDriver initilizeDriver() {
+
+        // Get browser from system property or properties file
+        String browserName = config.getProperty("browser");
+        if (browserName !=  null){
+            createDriver(browserName);
+        }else {
+            throw new RuntimeException("Please Pass The BrowserValue");
+        }
+
+        return driver;
+    }
+
+  @BeforeMethod(alwaysRun = true)
+    public void launchApplication() throws IOException
+    {
+        driver = initilizeDriver();
+        driver.get(Objects.requireNonNull(config.getProperty("url")));
+    }
+
+  @AfterMethod(alwaysRun = true)
+    public void tearDown()
+    {
+        System.out.println("Tearing down the code");
+        if (driver != null) {
+            driver = null; // Set to null to avoid memory leaks
+        }
+    }
 
 
-    public WebDriver initializeDriver() throws IOException {
+    private void createDriver(String browserName) {
+
+        switch (browserName) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                break;
+
+            default:
+                throw new RuntimeException("Browser not supported: " + browserName);
+        }
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+    }
+
+
+}
+
+/*
+*
+* public WebDriver initializeDriver() throws IOException {
+
         //Property class
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//Resources//GlobalData.properties");
         prop.load(fis);
-       String browserName = prop.getProperty("browser");
+        String browserName = prop.getProperty("browser");
 
         // For invoking through maven cmd terminal
         //String browserName = System.getProperty("browser") != null?  System.getProperty("browser") : prop.getProperty("browser");
@@ -53,22 +113,12 @@ public class BaseTest {
         driver.manage().window().maximize();
         return driver;
     }
-
-  @BeforeMethod(alwaysRun = true)
-    public LandingPage launchApplication() throws IOException
-    {
-        driver = initializeDriver();
-        landingpage = new LandingPage(driver);
-        landingpage.goTo();
-        return landingpage;
-    }
-
-  /*  @AfterMethod(alwaysRun = true)
-    public void tearDown()
-    {
-        System.out.println("Tearing down the code");
-        driver.close();
-    }*/
-
-
-}
+*
+*
+*
+*
+*
+*
+*
+*
+* */
