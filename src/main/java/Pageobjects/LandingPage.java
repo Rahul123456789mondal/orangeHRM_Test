@@ -35,13 +35,14 @@ public class LandingPage extends AbstractComponent {
     WebElement submit;
 
 
-    public void loginApp(String Username , String PassE)
+    public HrmHomePage loginApp(String Username , String PassE)
     {
         waitForElementAppr(usernameW);
         System.out.println("Logging in...");
         username.sendKeys(Username);
         password.sendKeys(PassE);
         submit.click();
+        return hrmHomePage;
     }
 
 }
