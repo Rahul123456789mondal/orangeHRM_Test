@@ -25,19 +25,20 @@ public class land2 {
         ChromeOptions options = new ChromeOptions();
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-       // driver.get(BaseUrl);
-        //LandingPage landingpage = new LandingPage(driver);
+        driver.get(BaseUrl);
+        LandingPage landingpage = new LandingPage(driver);
         //landingpage.goTo();
 //        Thread.sleep(3000);
         //landingpage.loginApp("admin","admin123");
 //        driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("admin");
 //        driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin123");
-//        driver.findElement(By.xpath("//button[@type='submit']")).click();
-    }
-    @Test
+//        driver.findElement(By.xpath("//button[@type='submit']")).click();*/
+//    }
+    /*@Test
     public void GotoE()
     {
         WebDriverManager.edgedriver().setup();
         WebDriver edgeDriver = new EdgeDriver();
         edgeDriver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-    }*/
+    }
+*/

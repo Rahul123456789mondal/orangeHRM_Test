@@ -2,6 +2,7 @@ package AbstactComponents;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,11 +18,15 @@ public class AbstractComponent {
         this.driver = driver;
     }
 
-    // Explicit wait class Taking Params only findBy Webelement
-    public void waitForElementAppr(By findBy)
-    {
-        // waiting for the element to be located
+    // Explicit wait class Taking Params only findBy : Wait using locator
+    public void waitForElementVisibility(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    // Wait using WebElement
+    public void waitForElementVisibility(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

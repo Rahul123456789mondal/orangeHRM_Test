@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LandingPage extends AbstractComponent {
 
     WebDriver driver;
-    public HrmHomePage hrmHomePage;
+
     public LandingPage(WebDriver driver)
     {
         /* sending driver instances to superclass AbstractComponents */
@@ -37,12 +37,12 @@ public class LandingPage extends AbstractComponent {
 
     public HrmHomePage loginApp(String Username , String PassE)
     {
-        waitForElementAppr(usernameW);
+        waitForElementVisibility(usernameW);
         System.out.println("Logging in...");
         username.sendKeys(Username);
         password.sendKeys(PassE);
         submit.click();
-        return hrmHomePage;
+        return new HrmHomePage(driver);
     }
 
 }

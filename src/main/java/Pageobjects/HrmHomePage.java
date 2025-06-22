@@ -22,6 +22,7 @@ public class HrmHomePage extends AbstractComponent {
         this.driver = driver;
         //Design- method
         PageFactory.initElements(driver, this);
+        System.out.println("HrmHomePage loaded");
     }
 
 
@@ -32,6 +33,10 @@ public class HrmHomePage extends AbstractComponent {
     WebElement menu2;
     @FindBy(xpath="//a[normalize-space()='Logout']")
     WebElement logoutBtn;
+    @FindBy(xpath="//span[normalize-space()='PIM']")
+     WebElement PIMNavBtn;
+    @FindBy(xpath="//h6[normalize-space()='PIM']")
+    WebElement PIMheader;
     By ProfileIcon2 = By.xpath("//span[@class='oxd-userdropdown-tab']");
     By Menu = By.xpath("//ul[@role='menu']");
 
@@ -43,6 +48,16 @@ public class HrmHomePage extends AbstractComponent {
         ProfileIcon.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(Menu));
         logoutBtn.click();
+    }
+
+    public PimPage GotoPimPage()
+    {
+        waitForElementVisibility(PIMNavBtn);
+        PIMNavBtn.click();
+        waitForElementVisibility(PIMheader);
+        String headerText = PIMheader.getText();
+        System.out.println("I am in the page"+" "+ headerText);
+        return new PimPage(driver);
     }
 
 }
