@@ -1,8 +1,6 @@
 package AbstactComponents;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -28,5 +26,39 @@ public class AbstractComponent {
     public void waitForElementVisibility(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    // Scroll to a specific element
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+//Uses explicit wait (WebDriverWait) for up to 10 seconds.
+//Waits until the element is both visible and enabled, meaning it's ready for clicking.
+//Prevents ElementNotInteractableException.
+//If normal click fails, it uses JavaScript to "force" the click on the element.
+
+    public void clickElement(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        try {
+            element.click();
+        } catch (ElementClickInterceptedException e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
+    }
+
+// Same As above method only taking webelement element as argument
+    public void clickElement(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+            System.out.println("click using wait");
+        } catch (ElementClickInterceptedException e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+            System.out.println("click using js executor");
+        }
     }
 }

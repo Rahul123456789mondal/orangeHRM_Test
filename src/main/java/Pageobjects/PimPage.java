@@ -37,26 +37,29 @@ public class PimPage extends AbstractComponent {
     @FindBy(xpath = "//button[normalize-space()='Save']")
     WebElement sveBtn;
 
-    @FindBy(xpath = "(//button[@type='submit'][normalize-space()='Save'])[1]")
-    WebElement preDetSveBtn;
+    //h6[normalize-space()='Personal Details']
+    @FindBy(xpath = "//h6[normalize-space()='Personal Details']")
+    WebElement PersonalDetailsTxt;
+
+    @FindBy(xpath = "//label[normalize-space()='Male']")
+    WebElement MaleCheckBox;
+
+    @FindBy(xpath = "//div[contains(@class, 'oxd-form-actions')]//button[@type='submit']")
+    WebElement saveBtn1st;
 
    public void addEmploye()
    {
        addBtn.click();
        waitForElementVisibility(firstName);
-       firstName.sendKeys("xyz");
-       middleName.sendKeys("Best");
-       lastName.sendKeys("CCB");
-//       String eid = empID.getText();
-//       System.out.println(eid);
-//       sveBtn.click(); -- not working need js executor scroll
-//       waitForElementVisibility(preDetSveBtn);
- //       preDetSveBtn.click();
+       firstName.sendKeys("FirstName");
+       middleName.sendKeys("Mdl");
+       lastName.sendKeys("ListName");
+       sveBtn.click();
         System.out.println("Employee added");
+       clickElement(MaleCheckBox);
+       clickElement(saveBtn1st);
+       String txt = PersonalDetailsTxt.getText();
+       System.out.println("add user 1st form was completed :"+txt);
 
    }
-
-
-
-
 }
