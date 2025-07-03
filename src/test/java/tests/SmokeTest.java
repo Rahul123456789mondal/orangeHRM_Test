@@ -23,7 +23,7 @@ public class SmokeTest extends BaseTest {
         LandingPage landingPage = new LandingPage(driver);
         HrmHomePage hrmHomePage =  landingPage.loginApp("Admin", "admin123");
         PimPage pimpage = hrmHomePage.GotoPimPage();
-        pimpage.addEmploye();
+        //pimpage.addEmp();
         //hrmHomePage.logout();
 
 

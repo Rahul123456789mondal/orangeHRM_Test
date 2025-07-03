@@ -34,7 +34,7 @@ public class land2 {
 //        driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin123");
 //        driver.findElement(By.xpath("//button[@type='submit']")).click();*/
 //    }
-    /*@Test
+/*@Test
     public void GotoE()
     {
         WebDriverManager.edgedriver().setup();

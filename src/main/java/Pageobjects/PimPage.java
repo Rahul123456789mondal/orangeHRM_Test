@@ -11,15 +11,12 @@ public class PimPage extends AbstractComponent {
     WebDriver driver;
     public PimPage(WebDriver driver)
     {
-        /* sending driver instances to superclass AbstractComponents */
         super(driver);
-        //for local class variable driver life which is coming from - constructor initilization
         this.driver = driver;
-        //Design- method
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath ="//button[normalize-space()='Add']")
+    @FindBy(xpath ="//button[@class='oxd-button oxd-button--medium oxd-button--secondary' and contains(., 'Add')]")
     WebElement addBtn;
 
     @FindBy(xpath ="//input[@placeholder='First Name']")
@@ -31,8 +28,8 @@ public class PimPage extends AbstractComponent {
     @FindBy(xpath ="//input[@placeholder='Last Name']")
     WebElement lastName;
 
-//    @FindBy(xpath ="//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@class='oxd-input oxd-input--active']")
-//    WebElement empID;
+    @FindBy(xpath ="//label[normalize-space()='Employee Id']/following::div[1]/input")
+    WebElement empID;
 
     @FindBy(xpath = "//button[normalize-space()='Save']")
     WebElement sveBtn;
@@ -47,19 +44,19 @@ public class PimPage extends AbstractComponent {
     @FindBy(xpath = "//div[contains(@class, 'oxd-form-actions')]//button[@type='submit']")
     WebElement saveBtn1st;
 
-   public void addEmploye()
+   public void addEmp(String FirstName, String LastName, String EmpID)
    {
        addBtn.click();
        waitForElementVisibility(firstName);
-       firstName.sendKeys("FirstName");
-       middleName.sendKeys("Mdl");
-       lastName.sendKeys("ListName");
+       firstName.sendKeys(FirstName);
+       lastName.sendKeys(LastName);
+       empID.sendKeys(EmpID);
        sveBtn.click();
-        System.out.println("Employee added");
-       clickElement(MaleCheckBox);
+       System.out.println("Employee added");
+       /*clickElement(MaleCheckBox);
        clickElement(saveBtn1st);
        String txt = PersonalDetailsTxt.getText();
-       System.out.println("add user 1st form was completed :"+txt);
+       System.out.println("add user 1st form was completed :"+txt);*/
 
    }
 }

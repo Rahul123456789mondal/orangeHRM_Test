@@ -15,7 +15,7 @@ public class LandingPage extends AbstractComponent {
     {
         /* sending driver instances to superclass AbstractComponents */
         super(driver);
-        //for local class variable driver life which is coming from - constructor initilization
+        //for local class variable driver life which is coming from - constructor initialization
         this.driver = driver;
         //Design- method
         PageFactory.initElements(driver, this);
@@ -46,9 +46,3 @@ public class LandingPage extends AbstractComponent {
     }
 
 }
-
-/*public void goTo()
-    {
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        System.out.println("in Goto");
-    }*/
