@@ -8,7 +8,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import java.io.IOException;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -30,7 +29,7 @@ public class BaseTest {
     }
 
   @BeforeMethod(alwaysRun = true)
-    public void launchApplication() throws IOException
+    public void launchApplication()
     {
         driver = initilizeDriver();
         driver.get(Objects.requireNonNull(config.getProperty("url")));
@@ -97,7 +96,7 @@ public class BaseTest {
         }
         else if (browserName.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
-            System.out.println("Launching browser firefox..2.");
+            System.out.println("Launching browser firefox.");
             driver = new FirefoxDriver();
         }
         else if (browserName.equalsIgnoreCase("edge")) {

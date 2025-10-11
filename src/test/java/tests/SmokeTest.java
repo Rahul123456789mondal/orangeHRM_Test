@@ -14,18 +14,15 @@ public class SmokeTest extends BaseTest {
         LandingPage landingPage = new LandingPage(driver);
         HrmHomePage hrmHomePage =  landingPage.loginApp("Admin", "admin123");
         //NEED OPTIMIZATION OR PAGE LEVEL CHAINING
-        //HrmHomePage hrmHomePagee = new HrmHomePage(driver);
+        //HrmHomePage hrmHomePage = new HrmHomePage(driver);
         hrmHomePage.logout();
 
     }
         @Test
-        public void addEmployee() throws InterruptedException {
+        public void addEmployee(){
         LandingPage landingPage = new LandingPage(driver);
         HrmHomePage hrmHomePage =  landingPage.loginApp("Admin", "admin123");
         PimPage pimpage = hrmHomePage.GotoPimPage();
-        //pimpage.addEmp();
-        //hrmHomePage.logout();
-
 
     }
 
